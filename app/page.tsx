@@ -1,5 +1,6 @@
 'use client';
 
+import { OrdersLineChart } from '@/components/orders-line-chart';
 import { OrdersTable } from '@/components/orders-table';
 import { DateRangePicker } from '@/components/ui/date-range-picker';
 import { useOrders } from '@/hooks/use-orders';
@@ -121,6 +122,8 @@ export default function Home() {
 
           {orders && !isLoading && (
             <div className="space-y-4">
+              <h3 className="text-2xl font-bold text-gray-900">Order History</h3>
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <StatBox
                   label="Total Orders"
@@ -140,6 +143,9 @@ export default function Home() {
               </div>
 
               <OrdersTable orders={orders} />
+
+              <h3 className="text-2xl font-bold text-gray-900">Order Totals by Day</h3>
+              <OrdersLineChart orders={orders} from={dateRange.from} to={dateRange.to} />
             </div>
           )}
         </div>
